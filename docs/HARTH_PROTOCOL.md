@@ -8,7 +8,20 @@ The [author README at a fixed revision](https://github.com/ntnu-ai-lab/harth-ml-
 
 The [source manifest](../contracts/harth-v1.2-source.json) records the download URL, archive size and SHA-256, member names, CSV headers, and participant assignments. The downloaded archive contains a directory and 22 CSVs; no README or separate license file is bundled. No conflicting archive terms were found. This finding is specific to these bytes, not a blanket conclusion about other distributions.
 
-**Implementation status:** source selection and header inspection are complete. No HARTH sensor rows have been parsed, windows constructed, or models trained here. The existing `har_input.py` accepts UCI HAR's 561-feature layout and cannot read HARTH. The following is the specification for a separate adapter, not an implemented command.
+**Implementation status:** `harth_input.py` now implements the protocol below. The existing `har_input.py` accepts UCI HAR's 561-feature layout and cannot read HARTH. Source selection was fixed before parsing sensor rows; model training remains a separate step.
+
+## Reproduce input preparation
+
+Download the [pinned archive](https://archive.ics.uci.edu/static/public/779/harth.zip) into ignored `data/`, then use Python 3.11 or later:
+
+```bash
+python3 harth_input.py data/harth-inspection/harth.zip \
+  --output artifacts/harth-input
+```
+
+The output directory must be new. The adapter verifies the archive checksum before reading CSV rows and checks it again after processing. It streams directly from the ZIP without extracting its paths. It writes `report.json`, `REPORT.md`, and local `windows.csv`. The CSV includes a separate explicit list of 30 model feature columns in the report: consumers must select those columns rather than use every numeric column. Publication of the aggregate report does not include the local feature matrix.
+
+Malformed headers, row widths, timestamps, or activity labels fail the run. Non-numeric or non-finite sensor values invalidate their complete window; incomplete tails are counted separately. Output files are staged in a temporary directory and moved only after successful processing; source data is never modified. Expected input errors return exit code 2.
 
 ## Input contract
 
@@ -33,6 +46,14 @@ For each channel, calculate mean, population standard deviation, minimum, maximu
 
 Assign the window target by the most frequent sample label, breaking ties by ascending numeric label. Preserve mixed-label windows; record their label agreement fraction for evaluation diagnostics without filtering by that fraction. Filtering with ground-truth purity would create an unavailable deployment-time quality gate. Input quality rejection remains separate from model abstention.
 
-## Next executable milestone
+## Verification scope and next milestone
 
-Implement a streaming HARTH adapter against this manifest, then produce an input-quality and window-retention report. Required acceptance cases include the three header exceptions, malformed rows, timestamp breaks, participant separation, mixed-label windows, and fit-only transformations. These checks have **not** been run yet. A subsequent baseline can compare DummyClassifier with a simple classifier on the same retained windows, followed by calibration and risk–coverage analysis. No performance targets or clinical claims follow from selecting this dataset.
+The [recorded archive run](../examples/harth-input-v1/REPORT.md) completed on 2026-09-26: 6,461,328 rows produced 25,531 windows. It observed 644 gaps above 30 ms, zero non-positive timestamp breaks, zero invalid sensor rows, and 78,578 incomplete samples at segment ends. Of the retained windows, 3,754 contain more than one activity label. These are input diagnostics, not classification results.
+
+Role counts are fit 13,263, calibration 2,961, threshold 3,569, and test 5,738 windows. Class 140 is absent from threshold selection; some other role/class combinations have very few windows. The split was not changed to hide this limitation. A threshold chosen on this role cannot establish class-140-specific risk control; later reporting must expose rare-class support and avoid unsupported classwise guarantees.
+
+The checked-in report contains aggregate counts and source hashes. The derived 30-feature matrix remains ignored under `artifacts/`. The [run record](../examples/harth-input-v1/run.json) records the Python environment and actual verification scope.
+
+The research archive run and its aggregate evidence are reported separately from synthetic unit tests. No new automated HARTH regression suite has been added in this step; a successful archive run does not establish behaviour on every malformed input. Follow-up regression cases should cover header exceptions, malformed rows, timestamp breaks, participant separation and mixed-label windows. No fitted transformations exist in this adapter.
+
+A subsequent baseline can compare DummyClassifier with a simple classifier on the same retained windows, followed by calibration and risk–coverage analysis. No performance targets or clinical claims follow from selecting this dataset.

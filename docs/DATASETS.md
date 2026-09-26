@@ -1,6 +1,6 @@
 # Dataset notes
 
-**Selected next input source:** the pinned 22-participant UCI HARTH distribution. See [the source and input protocol](HARTH_PROTOCOL.md) and [source manifest](../contracts/harth-v1.2-source.json). Selection and header inspection are complete; a HARTH adapter and research model experiments are not implemented yet.
+**Selected research input source:** the pinned 22-participant UCI HARTH distribution. See [the source and input protocol](HARTH_PROTOCOL.md) and [source manifest](../contracts/harth-v1.2-source.json). A streaming HARTH window adapter is implemented; research model experiments remain pending. The manifest records the earlier metadata-only source inspection, not the scope of subsequent adapter runs.
 
 The UCI HAR official archive was downloaded on 2026-09-26 for documentation and metadata inspection. Research feature matrices and sensor recordings have not been loaded, trained on, or evaluated. Input-adapter tests use generated synthetic files only.
 

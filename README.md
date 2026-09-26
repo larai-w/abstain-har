@@ -2,7 +2,7 @@
 
 Human activity recognition with explicit abstention and subject-disjoint evaluation.
 
-**Status: synthetic integration and a HAR text-layout adapter implemented; model research pending.** No model has been trained or evaluated in this repository. There are no model benchmark results, deployed endpoints, or clinical validation claims.
+**Status: synthetic integration, UCI HAR layout validation, and HARTH window preparation implemented; model research pending.** No model has been trained or evaluated in this repository. There are no model benchmark results, deployed endpoints, or clinical validation claims.
 
 ## Research question
 
@@ -37,7 +37,9 @@ The [example report](examples/har-input-v1/REPORT.md) uses generated numbers, no
 
 ## Repository contents
 
-The next research input source is now [HARTH's pinned 22-participant UCI distribution](docs/HARTH_PROTOCOL.md). Its source manifest, observed header exceptions, participant split, and windowing specification are recorded. The HARTH adapter and model experiments are still pending; the existing 561-column adapter is specific to UCI HAR.
+The selected research input source is [HARTH's pinned 22-participant UCI distribution](docs/HARTH_PROTOCOL.md). `harth_input.py` streams this archive into participant-separated, non-overlapping windows with 30 named features and an input-quality report. Its source manifest records header exceptions and the fixed split. Model experiments are pending; the separate 561-column adapter is specific to UCI HAR.
+
+The [completed research input run](examples/harth-input-v1/REPORT.md) processed 6,461,328 rows into 25,531 windows. Threshold-selection data lacks class 140; this limitation is recorded without changing the split. These counts are input evidence, not model performance. Raw recordings and derived feature rows are not included.
 
 - [Synthetic integration](docs/CARE_INTEGRATION.md): contract, limitations, and fresh two-repository reproduction.
 - `prepare_inputs.py`: checked feature batches and explicit exclusions.
