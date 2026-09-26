@@ -37,6 +37,8 @@ The [example report](examples/har-input-v1/REPORT.md) uses generated numbers, no
 
 ## Repository contents
 
+The next research input source is now [HARTH's pinned 22-participant UCI distribution](docs/HARTH_PROTOCOL.md). Its source manifest, observed header exceptions, participant split, and windowing specification are recorded. The HARTH adapter and model experiments are still pending; the existing 561-column adapter is specific to UCI HAR.
+
 - [Synthetic integration](docs/CARE_INTEGRATION.md): contract, limitations, and fresh two-repository reproduction.
 - `prepare_inputs.py`: checked feature batches and explicit exclusions.
 - `tests/`: subject separation, temporal availability, feature consistency, and CLI regression checks.

@@ -1,5 +1,7 @@
 # Dataset notes
 
+**Selected next input source:** the pinned 22-participant UCI HARTH distribution. See [the source and input protocol](HARTH_PROTOCOL.md) and [source manifest](../contracts/harth-v1.2-source.json). Selection and header inspection are complete; a HARTH adapter and research model experiments are not implemented yet.
+
 The UCI HAR official archive was downloaded on 2026-09-26 for documentation and metadata inspection. Research feature matrices and sensor recordings have not been loaded, trained on, or evaluated. Input-adapter tests use generated synthetic files only.
 
 ## UCI HAR
@@ -40,3 +42,15 @@ Recorded hashes:
 The inspected release documentation describes version 1.0, 561 derived features, 50 Hz sampling, and 128-reading windows with 50% overlap. Feature metadata has 561 ordered positions and 477 unique source names; duplicate names must not collapse columns. The README required Latin-1 decoding during inspection. Metadata was inspected directly inside the archives; raw feature matrices were not extracted into the repository.
 
 The archive and local inspection record remain in ignored `data/`. No research vectors, raw recordings, or archive files are published here. See [the input adapter](HAR_INPUT.md) for positional validation and synthetic reproduction.
+
+## Source selection (2026-09-26)
+
+The [current UCI donation policy](https://archive.ics.uci.edu/contribute/donation) describes CC BY 4.0 for donated datasets, but does not specifically explain how the UCI HAR archive's older restriction was superseded. No dataset-specific resolution was found in the reviewed primary sources. UCI HAR remains on hold for research experiments here.
+
+| Source | Evidence and implementation tradeoff | Selection |
+| --- | --- | --- |
+| UCI HAR | Existing 561-column adapter; conflicting page/archive descriptions remain. | Retain synthetic layout checks; defer research use. |
+| PAMAP2 | [UCI page](https://archive.ics.uci.edu/dataset/231/pamap2+physical+activity+monitoring) lists CC BY 4.0, nine participants, missing values, and three IMUs. Archive terms have not been inspected here. | Defer; fewer people for four distinct roles and more input harmonisation. |
+| HARTH, UCI copy | Dataset-specific CC BY 4.0 declaration; downloaded ZIP has 22 participant CSVs and no conflicting terms document. Named sensor channels require a new adapter. | Selected; pin archive and split before row-level analysis. |
+
+This selection prioritises explicit source evidence and participant-separated evaluation. It does not establish that any model transfers between sensor placements, populations, or datasets.

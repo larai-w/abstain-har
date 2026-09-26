@@ -1,0 +1,367 @@
+{
+  "manifest_version": 1,
+  "dataset": "HARTH",
+  "distribution": "UCI 779 (v1.2 according to author README)",
+  "source_url": "https://archive.ics.uci.edu/static/public/779/harth.zip",
+  "source_page": "https://archive.ics.uci.edu/dataset/779/harth",
+  "retrieved_on": "2026-09-26",
+  "archive_bytes": 310795012,
+  "archive_sha256": "2ab54d6b11467ddbe998dfb60355f9f1ae181b0af7a89e7c78bb7af2cf16b64a",
+  "declared_license": "CC-BY-4.0",
+  "license_evidence": "UCI dataset-specific landing page; archive contains only a directory and 22 CSV files, no separate terms document.",
+  "author_reference_commit": "dad2cfbe89a26f72f19770419469ac037de200df",
+  "inspection_scope": "ZIP directory and CSV headers only; no sensor rows parsed or models fitted",
+  "members": [
+    {
+      "member": "harth/S006.csv",
+      "bytes": 58097651,
+      "header": [
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S008.csv",
+      "bytes": 59837464,
+      "header": [
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S009.csv",
+      "bytes": 22161722,
+      "header": [
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S010.csv",
+      "bytes": 50314696,
+      "header": [
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S012.csv",
+      "bytes": 56062032,
+      "header": [
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S013.csv",
+      "bytes": 52955349,
+      "header": [
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S014.csv",
+      "bytes": 53364698,
+      "header": [
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S015.csv",
+      "bytes": 62410313,
+      "header": [
+        "timestamp",
+        "index",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S016.csv",
+      "bytes": 50797778,
+      "header": [
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S017.csv",
+      "bytes": 52265446,
+      "header": [
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S018.csv",
+      "bytes": 46068295,
+      "header": [
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S019.csv",
+      "bytes": 42611164,
+      "header": [
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S020.csv",
+      "bytes": 32941261,
+      "header": [
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S021.csv",
+      "bytes": 46869503,
+      "header": [
+        "timestamp",
+        "index",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S022.csv",
+      "bytes": 48467406,
+      "header": [
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S023.csv",
+      "bytes": 12914135,
+      "header": [
+        "",
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S024.csv",
+      "bytes": 16722098,
+      "header": [
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S025.csv",
+      "bytes": 21695989,
+      "header": [
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S026.csv",
+      "bytes": 18844878,
+      "header": [
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S027.csv",
+      "bytes": 15873565,
+      "header": [
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S028.csv",
+      "bytes": 16949909,
+      "header": [
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    },
+    {
+      "member": "harth/S029.csv",
+      "bytes": 16742233,
+      "header": [
+        "timestamp",
+        "back_x",
+        "back_y",
+        "back_z",
+        "thigh_x",
+        "thigh_y",
+        "thigh_z",
+        "label"
+      ]
+    }
+  ],
+  "split_plan": {
+    "status": "fixed before reading sensor rows or labels; not yet executed by a HARTH adapter",
+    "algorithm": "sha256 of UTF-8 seed:subject_id; ascending hex digest; first 4 test, next 3 calibration, next 3 threshold, remaining fit",
+    "seed": 7,
+    "subject_id_format": "original filename stem, including S prefix and zero padding",
+    "roles": {
+      "test": [
+        "S012",
+        "S013",
+        "S017",
+        "S022"
+      ],
+      "calibration": [
+        "S008",
+        "S024",
+        "S027"
+      ],
+      "threshold": [
+        "S006",
+        "S016",
+        "S023"
+      ],
+      "fit": [
+        "S009",
+        "S010",
+        "S014",
+        "S015",
+        "S018",
+        "S019",
+        "S020",
+        "S021",
+        "S025",
+        "S026",
+        "S028",
+        "S029"
+      ]
+    },
+    "official_split": false,
+    "uses_labels_or_features": false
+  }
+}
