@@ -2,7 +2,33 @@
 
 Human activity recognition with explicit abstention and subject-disjoint evaluation.
 
-**Status: HARTH baseline, sigmoid calibration and abstention experiments are recorded.** There are no deployed endpoints or clinical validation claims.
+**Status: HARTH baseline, calibration, abstention and fixed-model stress experiments are recorded.** There are no deployed endpoints or clinical validation claims.
+
+## When confidence fails under changed inputs
+
+The [fixed stress protocol](docs/ROBUSTNESS.md) evaluates eleven conditions on the same 5,738 test windows, with model artifacts and thresholds frozen before execution. These are **exploratory feature-level simulations on a previously viewed test split**, not measured device failures or independent validation.
+
+| Condition | Raw coverage | Raw errors / answers | Sigmoid coverage | Sigmoid errors / answers |
+| --- | ---: | ---: | ---: | ---: |
+| Clean control | 95.02% | 4.59% | 94.41% | 4.54% |
+| Thigh summaries missing on every window | 0% | Undefined | 0% | Undefined |
+| Back summaries all zero | 100% | 93.97% | 100% | 93.97% |
+| All summaries scaled by 0.5 | 78.69% | 18.14% | 81.67% | 19.16% |
+| Back-x offset +1 g | 89.75% | 92.66% | 88.27% | 91.27% |
+| Back/thigh columns exchanged | 81.54% | 78.05% | 81.61% | 76.70% |
+
+Missing inputs are rejected by a finite-value check **before prediction**. This is input validation, not learned abstention. Zero-valued sensor summaries pass that check: 4,857 raw and 4,828 sigmoid clean accepted/correct windows become accepted/wrong. Confidence thresholds alone do not provide protection against these changed inputs.
+
+The full report retains both variants and all conditions, including a small offset where aggregate risk falls but some previously correct answers become wrong. It separates input rejection, model abstention and acceptance; overall coverage includes rejected windows. Per-participant/class counts, paired transitions, errors on the shared accepted subset and participant bootstrap intervals are recorded. Four test participants give limited uncertainty evidence. No model or threshold was retuned after these results.
+
+[All stress results](examples/robustness-v1/REPORT.md) · [Counts and provenance](examples/robustness-v1/report.json)
+
+```bash
+.venv/bin/python robustness.py artifacts/harth-input-v1 \
+  --models artifacts/selective-v1 --output artifacts/robustness-v1
+```
+
+The runner requires the locally generated, hash-matched selective model artifacts and pinned ML environment. Models and feature rows remain excluded from the repository.
 
 ## Calibration and abstention
 
@@ -96,6 +122,7 @@ The [completed research input run](examples/harth-input-v1/REPORT.md) processed 
 - `harth_input.py`: pinned research archive validation and window features.
 - `baseline.py`: fit-only grouped model selection, held-out evaluation, and aggregate reports.
 - `selective.py`: frozen-base sigmoid calibration, threshold selection and explicit abstention.
+- `robustness.py`: fixed-model paired feature perturbations with separate input rejection and model abstention counts.
 - [Dataset notes](docs/DATASETS.md): candidate sources, attribution, and compatibility limits.
 - `scripts/check_public_repo.py`: public-content checks for staged or tracked files.
 - `.github/workflows/public-content.yml`: the same content check in CI.
