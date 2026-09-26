@@ -54,6 +54,6 @@ Role counts are fit 13,263, calibration 2,961, threshold 3,569, and test 5,738 w
 
 The checked-in report contains aggregate counts and source hashes. The derived 30-feature matrix remains ignored under `artifacts/`. The [run record](../examples/harth-input-v1/run.json) records the Python environment and actual verification scope.
 
-The research archive run and its aggregate evidence are reported separately from synthetic unit tests. No new automated HARTH regression suite has been added in this step; a successful archive run does not establish behaviour on every malformed input. Follow-up regression cases should cover header exceptions, malformed rows, timestamp breaks, participant separation and mixed-label windows. No fitted transformations exist in this adapter.
+The research archive run and its aggregate evidence are reported separately from synthetic unit tests. `tests/test_harth_input.py` now covers feature calculations, header exceptions, malformed rows, timestamp breaks, participant separation, mixed-label windows and archive integrity using temporary synthetic files. A successful archive run does not establish behaviour on every malformed input. No fitted transformations exist in this adapter.
 
-A subsequent baseline can compare DummyClassifier with a simple classifier on the same retained windows, followed by calibration and risk–coverage analysis. No performance targets or clinical claims follow from selecting this dataset.
+The [baseline comparison](BASELINE.md) now evaluates DummyClassifier, logistic regression and Random Forest on these retained windows. Calibration and risk–coverage analysis remain subsequent work. No clinical claims follow from selecting this dataset or running the baseline.

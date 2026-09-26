@@ -2,7 +2,30 @@
 
 Human activity recognition with explicit abstention and subject-disjoint evaluation.
 
-**Status: synthetic integration, UCI HAR layout validation, and HARTH window preparation implemented; model research pending.** No model has been trained or evaluated in this repository. There are no model benchmark results, deployed endpoints, or clinical validation claims.
+**Status: a reproducible HARTH baseline comparison is complete.** Calibration and abstention are not implemented yet. There are no deployed endpoints or clinical validation claims.
+
+## Baseline results
+
+Three models were compared using 30 features, 12 fitting participants and four held-out test participants (5,738 windows). Settings and the [evaluation protocol](docs/BASELINE.md) were committed before the research model run. Model selection used four-fold participant-separated CV within the fitting set.
+
+| Model | Fit-only CV macro-F1 | Test macro-F1 | Test balanced accuracy | Test accuracy |
+| --- | ---: | ---: | ---: | ---: |
+| Most-frequent dummy | 0.0439 | 0.0638 | 0.0833 | 0.6199 |
+| Standardised logistic regression | 0.5808 | 0.5945 | 0.6654 | 0.8865 |
+| Random Forest | 0.5954 | 0.6407 | 0.6381 | 0.9259 |
+
+Random Forest was selected by fit-only CV, but logistic regression has higher test balanced accuracy. Random Forest recall is only 0.3113 for shuffling and 0.3736 for ascending stairs; class 140 has just two test windows and neither is correctly predicted. Accuracy alone hides these limitations. Macro-F1 averages all twelve classes; balanced accuracy averages recall over classes with true support.
+
+See the [generated report](examples/baseline-v1/REPORT.md) for participant variation and [report.json](examples/baseline-v1/report.json) for confusion matrices, class support, participant bootstrap intervals, timings and provenance. Four test people give limited evidence of generalisation. The published baseline is not a fresh holdout for future changes informed by its results.
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-ml.txt
+# Download and prepare the pinned HARTH archive as documented below.
+.venv/bin/python baseline.py artifacts/harth-input-v1 --output artifacts/baseline-v1
+```
+
+Use a new output directory. [Full reproduction and metric definitions](docs/BASELINE.md).
 
 ## Research question
 
@@ -37,7 +60,7 @@ The [example report](examples/har-input-v1/REPORT.md) uses generated numbers, no
 
 ## Repository contents
 
-The selected research input source is [HARTH's pinned 22-participant UCI distribution](docs/HARTH_PROTOCOL.md). `harth_input.py` streams this archive into participant-separated, non-overlapping windows with 30 named features and an input-quality report. Its source manifest records header exceptions and the fixed split. Model experiments are pending; the separate 561-column adapter is specific to UCI HAR.
+The selected research input source is [HARTH's pinned 22-participant UCI distribution](docs/HARTH_PROTOCOL.md). `harth_input.py` streams this archive into participant-separated, non-overlapping windows with 30 named features and an input-quality report. Its source manifest records header exceptions and the fixed split. The separate 561-column adapter is specific to UCI HAR.
 
 The [completed research input run](examples/harth-input-v1/REPORT.md) processed 6,461,328 rows into 25,531 windows. Threshold-selection data lacks class 140; this limitation is recorded without changing the split. These counts are input evidence, not model performance. Raw recordings and derived feature rows are not included.
 
@@ -45,11 +68,15 @@ The [completed research input run](examples/harth-input-v1/REPORT.md) processed 
 - `prepare_inputs.py`: checked feature batches and explicit exclusions.
 - `tests/`: subject separation, temporal availability, feature consistency, and CLI regression checks.
 - `har_input.py`: positional HAR schema validation and reproducible participant split manifests.
+- `harth_input.py`: pinned research archive validation and window features.
+- `baseline.py`: fit-only grouped model selection, held-out evaluation, and aggregate reports.
 - [Dataset notes](docs/DATASETS.md): candidate sources, attribution, and compatibility limits.
 - `scripts/check_public_repo.py`: public-content checks for staged or tracked files.
 - `.github/workflows/public-content.yml`: the same content check in CI.
 
-There are no training, inference, or model-evaluation commands yet. CI checks repository content, consumer behaviour, and the integration against a pinned producer revision. Passing CI is not evidence of model quality.
+CI runs synthetic regression tests for input processing, feature exclusion, grouped selection and metrics, plus the integration against a pinned producer revision. It does not download research recordings or run the full benchmark. Passing CI is not evidence of model quality; the recorded research run is separate.
+
+After installing `requirements-ml.txt`, run all local tests with `.venv/bin/python -m unittest discover -s tests -v`. Tests use temporary synthetic files and do not modify research data.
 
 ## Local content check
 
