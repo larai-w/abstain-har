@@ -14,7 +14,13 @@ The [versioned local interface](docs/LOCAL_INFERENCE.md) accepts 30 named summar
   --output artifacts/local-inference-v1/response.json
 ```
 
-First prepare the local model artifacts using the calibration protocol below. The [example request](examples/local-inference-v1/request.json) contains invented features; the [recorded response](examples/local-inference-v1/response.json) uses the research-trained model. This demonstrates the interface, not prediction quality. Zero-valued inputs still pass the finite-value gate: the failure measured below remains unresolved.
+First prepare the local model artifacts using the calibration protocol below. The [example request](examples/local-inference-v1/request.json) contains invented features; the [historical v1 response](examples/local-inference-v1/response.json) uses the research-trained model. Current responses are version 2 and identify the input policy. These examples demonstrate the interface, not prediction quality.
+
+### Narrow protection against exact-zero sensors
+
+Add `--input-policy exact-zero-v1` to reject inputs where either sensor's entire 15-summary block is exactly zero. `finite-v1` remains the default. In the [fixed exploratory evaluation](examples/zero-gate-v1/REPORT.md), all 5,738 injected windows for each zero-back, zero-thigh and zero-both scenario were rejected. The 25,531 unperturbed windows had no rejections, including 16,191 standing/sitting/lying windows. These observations are not a general false-positive guarantee.
+
+The rule deliberately misses near-zero values: scaling the back summaries by 1e-6 still gives **93.97% errors with 100% coverage** under both variants. Nonzero flatlines and sensor swaps also remain problematic. This is a narrow input rule, not a general fault detector. All-rejected scenarios have zero coverage and undefined risk, not perfect accuracy. Models and thresholds are unchanged. [Protocol](docs/ZERO_GATE.md) · [Detailed evidence](examples/zero-gate-v1/report.json) · [Response v2 example](examples/zero-gate-v1/local-response.json).
 
 ## When confidence fails under changed inputs
 

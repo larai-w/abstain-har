@@ -1,0 +1,56 @@
+{
+  "response_version": 2,
+  "contract": "harth-summary-v1",
+  "dataset_kind": "synthetic",
+  "input_policy": "exact-zero-v1",
+  "decisions": [
+    {
+      "id": "constant-signal",
+      "status": "accepted",
+      "label": 8,
+      "confidence": 0.6473970398710462,
+      "reason": "threshold_met"
+    },
+    {
+      "id": "missing-thigh",
+      "status": "input_rejected",
+      "label": null,
+      "confidence": null,
+      "reason": "missing_feature"
+    },
+    {
+      "id": "zero-signal",
+      "status": "input_rejected",
+      "label": null,
+      "confidence": null,
+      "reason": "zero_both_sensors"
+    }
+  ],
+  "counts": {
+    "input_rejected": 2,
+    "model_abstained": 0,
+    "accepted": 1
+  },
+  "provenance": {
+    "variant": "sigmoid",
+    "model_sha256": "6019dc221b44967d8e842b30ec52581004f11bf4307ac2c2aabc106f275b71a0",
+    "reference_sha256": "aa0e36949d72c79720fd3f9ef211197c99e66636e22e86c4db95edcc8167b454",
+    "threshold": 0.64,
+    "packages": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2",
+      "joblib": "1.5.2",
+      "threadpoolctl": "3.6.0"
+    },
+    "feature_contract": "harth-summary-v1",
+    "request_sha256": "f6d3e3e80221c576d8826088fd543c33b87890af84a992101418de248a728984",
+    "source_sha256": {
+      "local_predict.py": "e60cc9bbc9a18dfdbeeb0884e767016655abf2bc1fb72281b5cb506844d38275",
+      "quality_gate.py": "0c2ce68fb2b197ae1ffc90b6b8bd4141a6b64ec2f5bfc5a18e48808bab293d50",
+      "robustness.py": "59347ed95546bf0da6672560d76a7914545317e01fc34b07eecd42488cb85a4d",
+      "selective.py": "ca60a156b5f7ccff942b7a4432ae14de9b75fe8ba4f218fd52b249cf5d884b70",
+      "harth_input.py": "fb5fd72886a817bc268a8813a34946449205b3a367958bfd476acca644424687"
+    }
+  }
+}
