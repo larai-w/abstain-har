@@ -2,7 +2,7 @@
 
 Human activity recognition with explicit abstention and subject-disjoint evaluation.
 
-**Status: synthetic input integration implemented; model research pending.** No model has been trained or evaluated in this repository. There are no model benchmark results, deployed endpoints, or clinical validation claims.
+**Status: synthetic integration and a HAR text-layout adapter implemented; model research pending.** No model has been trained or evaluated in this repository. There are no model benchmark results, deployed endpoints, or clinical validation claims.
 
 ## Research question
 
@@ -23,11 +23,24 @@ python3 prepare_inputs.py examples/integration/bundle.json \
 
 The fixed example contains six synthetic samples: four eligible input rows, one quality rejection, and one insufficient-data exclusion. The three-value indicator summaries are not HAR sensor features. No training, prediction, or model abstention takes place.
 
+## Validate the HAR input layout
+
+The [HAR adapter](docs/HAR_INPUT.md) validates 561-feature vectors, aligned activity/subject files, and official train/test subject separation. It plans fit/calibration/threshold roles using training subjects only, without using labels or feature values for assignment.
+
+```bash
+python3 scripts/make_synthetic_har.py --output data/synthetic-har
+python3 har_input.py data/synthetic-har --dataset-kind synthetic \
+  --calibration-subjects 1 --threshold-subjects 1 --output artifacts/har-input
+```
+
+The [example report](examples/har-input-v1/REPORT.md) uses generated numbers, not research recordings. Official archive metadata has been inspected, but [conflicting usage descriptions](docs/DATASETS.md#uci-har-distribution-inspection-2026-09-26) remain unresolved. Research matrices have not been loaded or evaluated here.
+
 ## Repository contents
 
 - [Synthetic integration](docs/CARE_INTEGRATION.md): contract, limitations, and fresh two-repository reproduction.
 - `prepare_inputs.py`: checked feature batches and explicit exclusions.
 - `tests/`: subject separation, temporal availability, feature consistency, and CLI regression checks.
+- `har_input.py`: positional HAR schema validation and reproducible participant split manifests.
 - [Dataset notes](docs/DATASETS.md): candidate sources, attribution, and compatibility limits.
 - `scripts/check_public_repo.py`: public-content checks for staged or tracked files.
 - `.github/workflows/public-content.yml`: the same content check in CI.

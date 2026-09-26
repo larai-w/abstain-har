@@ -1,6 +1,6 @@
 # Dataset notes
 
-No dataset has been downloaded, processed, or evaluated as part of this scaffold.
+The UCI HAR official archive was downloaded on 2026-09-26 for documentation and metadata inspection. Research feature matrices and sensor recordings have not been loaded, trained on, or evaluated. Input-adapter tests use generated synthetic files only.
 
 ## UCI HAR
 
@@ -23,3 +23,20 @@ Citation: Reiss, A. (2012). *PAMAP2 Physical Activity Monitoring*. UCI Machine L
 Both UCI landing pages displayed CC BY 4.0 on 2026-09-25. Before use, inspect the downloaded distribution's terms and reconcile any discrepancy. Record the source URL, retrieval date, checksum, attribution, and transformations. Do not commit raw recordings to this repository.
 
 Results on these research datasets do not establish performance for older adults, clinical populations, or real-world care settings.
+
+## UCI HAR distribution inspection (2026-09-26)
+
+Source: [UCI dataset page](https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones) and its [official download](https://archive.ics.uci.edu/static/public/240/human%2Bactivity%2Brecognition%2Busing%2Bsmartphones.zip).
+
+The current landing page displays **CC BY 4.0**. The downloaded archive's `UCI HAR Dataset/README.txt` also contains the sentence **“Any commercial use is prohibited.”** These descriptions differ. Their applicability has not been resolved here; do not infer unrestricted use from this repository or treat the CLI as a terms-acceptance mechanism. Research-data model experiments remain pending clarification of the applicable conditions. No permission request has been sent on anyone's behalf.
+
+Recorded hashes:
+
+| Artifact | SHA-256 |
+| --- | --- |
+| Official outer ZIP | `c00b803081a5c797cd5e4b83700a9810b38d53d9d84e01917e090e1fdbc81031` |
+| Nested `UCI HAR Dataset.zip` | `2045e435c955214b38145fb5fa00776c72814f01b203fec405152dac7d5bfeb0` |
+
+The inspected release documentation describes version 1.0, 561 derived features, 50 Hz sampling, and 128-reading windows with 50% overlap. Feature metadata has 561 ordered positions and 477 unique source names; duplicate names must not collapse columns. The README required Latin-1 decoding during inspection. Metadata was inspected directly inside the archives; raw feature matrices were not extracted into the repository.
+
+The archive and local inspection record remain in ignored `data/`. No research vectors, raw recordings, or archive files are published here. See [the input adapter](HAR_INPUT.md) for positional validation and synthetic reproduction.
