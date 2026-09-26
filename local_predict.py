@@ -14,7 +14,7 @@ from threadpoolctl import threadpool_limits
 
 from baseline import ROOT
 from harth_input import FEATURES, LABELS, sha
-from robustness import infer
+from quality_gate import POLICIES, gated_infer
 
 CONTRACT = 'harth-summary-v1'
 MAX_ROWS = 1000
@@ -108,34 +108,35 @@ def load_model(directory, variant):
     return model, threshold, provenance
 
 
-def predict(request, model, threshold):
+def predict(request, model, threshold, input_policy='finite-v1'):
     ids, features = validate_request(request)
     with threadpool_limits(limits=1):
-        state = infer(model, features, threshold)
+        state, reasons = gated_infer(model, features, threshold, input_policy)
     decisions = []
     for i, ident in enumerate(ids):
         status = str(state['status'][i])
         decisions.append({'id': ident, 'status': status,
                           'label': int(state['predicted'][i]) if status == 'accepted' else None,
                           'confidence': None if status == 'input_rejected' else float(state['confidence'][i]),
-                          'reason': {'accepted': 'threshold_met', 'model_abstained': 'policy_abstention',
-                                     'input_rejected': 'missing_feature'}[status]})
-    return {'response_version': 1, 'contract': CONTRACT, 'dataset_kind': request['dataset_kind'],
+                          'reason': str(reasons[i]) if status == 'input_rejected' else
+                                    {'accepted': 'threshold_met', 'model_abstained': 'policy_abstention'}[status]})
+    return {'response_version': 2, 'contract': CONTRACT, 'dataset_kind': request['dataset_kind'],
+            'input_policy': input_policy,
             'decisions': decisions,
             'counts': {status: sum(d['status'] == status for d in decisions)
                        for status in ('input_rejected', 'model_abstained', 'accepted')}}
 
 
-def run(request_path, model_directory, variant, output):
+def run(request_path, model_directory, variant, output, input_policy='finite-v1'):
     if output.exists():
         raise ValueError('output exists; choose a new path')
     request, request_hash = read_request(request_path)
     validate_request(request)  # Reject malformed batches before deserializing a model.
     model, threshold, provenance = load_model(model_directory, variant)
-    result = predict(request, model, threshold)
+    result = predict(request, model, threshold, input_policy)
     result['provenance'] = {**provenance, 'request_sha256': request_hash,
                             'source_sha256': {name: sha(ROOT / name) for name in
-                                              ('local_predict.py', 'robustness.py', 'selective.py', 'harth_input.py')}}
+                                              ('local_predict.py', 'quality_gate.py', 'robustness.py', 'selective.py', 'harth_input.py')}}
     payload = json.dumps(result, indent=2, allow_nan=False) + '\n'
     output.parent.mkdir(parents=True, exist_ok=True)
     with output.open('x') as stream:
@@ -149,9 +150,10 @@ def main():
     parser.add_argument('--models', type=Path, required=True)
     parser.add_argument('--variant', choices=('raw', 'sigmoid'), required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--input-policy', choices=POLICIES, default='finite-v1')
     args = parser.parse_args()
     try:
-        run(args.request, args.models, args.variant, args.output)
+        run(args.request, args.models, args.variant, args.output, args.input_policy)
     except (ValueError, OSError, KeyError, TypeError, RecursionError) as error:
         # No input payload or local identifiers are echoed in diagnostics.
         print(f'Local inference failed ({type(error).__name__}); check the request, model and output path.', file=sys.stderr)
