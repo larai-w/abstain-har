@@ -1,0 +1,11 @@
+{
+  "exit_code": 0,
+  "command": "python selective.py artifacts/harth-input-v1 --output artifacts/selective-v1",
+  "plot_exit_code": 0,
+  "raw_confusion_matrix_matches_baseline": true,
+  "warnings": [
+    "scikit-learn: least populated calibration class has one sample, below default n_splits=5. FrozenEstimator prevents forest refitting; rare-class calibration remains weak."
+  ],
+  "test_scope": "59 synthetic regression tests pass; full research experiment separate from CI",
+  "evaluation_status": "exploratory_previously_viewed_test"
+}

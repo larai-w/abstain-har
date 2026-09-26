@@ -2,7 +2,32 @@
 
 Human activity recognition with explicit abstention and subject-disjoint evaluation.
 
-**Status: a reproducible HARTH baseline comparison is complete.** Calibration and abstention are not implemented yet. There are no deployed endpoints or clinical validation claims.
+**Status: HARTH baseline, sigmoid calibration and abstention experiments are recorded.** There are no deployed endpoints or clinical validation claims.
+
+## Calibration and abstention
+
+The [fixed extension protocol](docs/ABSTENTION.md) calibrates the selected forest on three separate participants and chooses thresholds on another three. This is **exploratory reuse of the previously evaluated four-person test split**, not a new independent validation sample.
+
+| Variant | Test coverage (answered) | Errors among answers |
+| --- | ---: | ---: |
+| Raw forest, no abstention | 100% | 7.41% |
+| Raw forest, threshold 0.43 | 95.02% | 4.59% |
+| Sigmoid, no abstention | 100% | 7.74% |
+| Sigmoid, threshold 0.64 | 94.41% | 4.54% |
+
+The empirical threshold-selection target was risk ≤5% with coverage ≥50% and at least 100 answers; it is **not a guarantee**. Three of the four test participants exceed 5% risk under each selected policy. Class 140 remains a failure: raw accepts both of its two test windows incorrectly; sigmoid accepts one incorrectly and abstains on the other.
+
+Calibration did not consistently improve probability quality: log loss increased from 0.2486 to 0.2514 and top-label ECE from 0.0388 to 0.0435, while Brier changed slightly from 0.1097 to 0.1096. Both variants are retained; no winner is selected using test results. Calibration data includes a class with just one window, and the recorded run includes the resulting library warning.
+
+![Top-label reliability and risk–coverage on the reused test split](examples/selective-v1/calibration-risk-coverage.png)
+
+[Generated report](examples/selective-v1/REPORT.md) · [Detailed counts and uncertainty](examples/selective-v1/report.json) · [Run and warning record](examples/selective-v1/run.json)
+
+```bash
+.venv/bin/python selective.py artifacts/harth-input-v1 --output artifacts/selective-v1
+```
+
+Use the pinned ML environment and a new output directory. Abstained decisions have `label: null`. Input validation, model abstention and clinical safety are distinct questions.
 
 ## Baseline results
 
@@ -70,6 +95,7 @@ The [completed research input run](examples/harth-input-v1/REPORT.md) processed 
 - `har_input.py`: positional HAR schema validation and reproducible participant split manifests.
 - `harth_input.py`: pinned research archive validation and window features.
 - `baseline.py`: fit-only grouped model selection, held-out evaluation, and aggregate reports.
+- `selective.py`: frozen-base sigmoid calibration, threshold selection and explicit abstention.
 - [Dataset notes](docs/DATASETS.md): candidate sources, attribution, and compatibility limits.
 - `scripts/check_public_repo.py`: public-content checks for staged or tracked files.
 - `.github/workflows/public-content.yml`: the same content check in CI.

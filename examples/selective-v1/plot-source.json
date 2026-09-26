@@ -1,0 +1,6 @@
+{
+  "report_sha256": "aa0e36949d72c79720fd3f9ef211197c99e66636e22e86c4db95edcc8167b454",
+  "renderer_sha256": "30877bf28b47f894a8cdc695c67a5d92a04755ff80ff2133405e399634199efc",
+  "matplotlib_version": "3.10.7",
+  "source": "report.json aggregate bins and grid only; no fitted parameters changed"
+}
