@@ -4,6 +4,18 @@ Human activity recognition with explicit abstention and subject-disjoint evaluat
 
 **Status: HARTH baseline, calibration, abstention and fixed-model stress experiments are recorded.** There are no deployed endpoints or clinical validation claims.
 
+## Run local inference
+
+The [versioned local interface](docs/LOCAL_INFERENCE.md) accepts 30 named summaries and returns one of `input_rejected`, `model_abstained`, or `accepted`. Rejected and abstained rows have `label: null`. Model artifacts must match the recorded hashes and dependency versions; thresholds remain fixed.
+
+```bash
+.venv/bin/python local_predict.py examples/local-inference-v1/request.json \
+  --models artifacts/selective-v1 --variant sigmoid \
+  --output artifacts/local-inference-v1/response.json
+```
+
+First prepare the local model artifacts using the calibration protocol below. The [example request](examples/local-inference-v1/request.json) contains invented features; the [recorded response](examples/local-inference-v1/response.json) uses the research-trained model. This demonstrates the interface, not prediction quality. Zero-valued inputs still pass the finite-value gate: the failure measured below remains unresolved.
+
 ## When confidence fails under changed inputs
 
 The [fixed stress protocol](docs/ROBUSTNESS.md) evaluates eleven conditions on the same 5,738 test windows, with model artifacts and thresholds frozen before execution. These are **exploratory feature-level simulations on a previously viewed test split**, not measured device failures or independent validation.
@@ -123,11 +135,12 @@ The [completed research input run](examples/harth-input-v1/REPORT.md) processed 
 - `baseline.py`: fit-only grouped model selection, held-out evaluation, and aggregate reports.
 - `selective.py`: frozen-base sigmoid calibration, threshold selection and explicit abstention.
 - `robustness.py`: fixed-model paired feature perturbations with separate input rejection and model abstention counts.
+- `local_predict.py`: strict JSON batch inference, artifact provenance and null labels for non-answers.
 - [Dataset notes](docs/DATASETS.md): candidate sources, attribution, and compatibility limits.
 - `scripts/check_public_repo.py`: public-content checks for staged or tracked files.
 - `.github/workflows/public-content.yml`: the same content check in CI.
 
-CI runs synthetic regression tests for input processing, feature exclusion, grouped selection and metrics, plus the integration against a pinned producer revision. It does not download research recordings or run the full benchmark. Passing CI is not evidence of model quality; the recorded research run is separate.
+CI runs synthetic regression tests for input processing, feature exclusion, grouped selection, metrics, stress transformations and the local inference contract, plus the integration against a pinned producer revision. It does not download research recordings or run the full benchmark. Passing CI is not evidence of model quality; the recorded research run is separate.
 
 After installing `requirements-ml.txt`, run all local tests with `.venv/bin/python -m unittest discover -s tests -v`. Tests use temporary synthetic files and do not modify research data.
 
