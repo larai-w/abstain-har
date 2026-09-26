@@ -1,0 +1,160 @@
+{
+  "report_version": 1,
+  "all_semantic_matches": true,
+  "all_model_artifact_hashes_match": true,
+  "comparisons": {
+    "harth-input-v1/report.json": {
+      "semantic_match": true,
+      "compared_leaves": 707,
+      "absolute_tolerance": 1e-12,
+      "relative_tolerance": 0,
+      "max_absolute_numeric_difference": 0.0,
+      "difference_count": 0,
+      "differences_first_50": [],
+      "excluded_paths": [],
+      "model_artifact_hashes": [],
+      "model_artifacts_match": true,
+      "reference_sha256": "c2613b001cf16eab562e01514df5f815e40f7a3c2feb154edf6eeb57ed4538c3",
+      "regenerated_sha256": "c2613b001cf16eab562e01514df5f815e40f7a3c2feb154edf6eeb57ed4538c3"
+    },
+    "baseline-v1/report.json": {
+      "semantic_match": true,
+      "compared_leaves": 6183,
+      "absolute_tolerance": 1e-12,
+      "relative_tolerance": 0,
+      "max_absolute_numeric_difference": 0.0,
+      "difference_count": 0,
+      "differences_first_50": [],
+      "excluded_paths": [
+        "$/completed_at",
+        "$/environment/platform",
+        "$/environment/python",
+        "$/git_commit_at_run",
+        "$/models/dummy/fit_seconds",
+        "$/models/dummy/test_batch_predict_seconds",
+        "$/models/logistic/fit_seconds",
+        "$/models/logistic/test_batch_predict_seconds",
+        "$/models/random_forest/fit_seconds",
+        "$/models/random_forest/test_batch_predict_seconds",
+        "$/selection/cv/dummy/folds/0/fit_seconds",
+        "$/selection/cv/dummy/folds/1/fit_seconds",
+        "$/selection/cv/dummy/folds/2/fit_seconds",
+        "$/selection/cv/dummy/folds/3/fit_seconds",
+        "$/selection/cv/logistic/folds/0/fit_seconds",
+        "$/selection/cv/logistic/folds/1/fit_seconds",
+        "$/selection/cv/logistic/folds/2/fit_seconds",
+        "$/selection/cv/logistic/folds/3/fit_seconds",
+        "$/selection/cv/random_forest/folds/0/fit_seconds",
+        "$/selection/cv/random_forest/folds/1/fit_seconds",
+        "$/selection/cv/random_forest/folds/2/fit_seconds",
+        "$/selection/cv/random_forest/folds/3/fit_seconds"
+      ],
+      "model_artifact_hashes": [
+        {
+          "path": "$/models/dummy/model_sha256",
+          "equal": true
+        },
+        {
+          "path": "$/models/logistic/model_sha256",
+          "equal": true
+        },
+        {
+          "path": "$/models/random_forest/model_sha256",
+          "equal": true
+        }
+      ],
+      "model_artifacts_match": true,
+      "reference_sha256": "5db734f5a54aebd209553e237a90e36591cdff67d7c0a76bdbb15afcee439ac0",
+      "regenerated_sha256": "a7620bdcb3a3776073b0a57a552fa324c18d446ccbb0c0ec711d2d1f6e0accf1"
+    },
+    "selective-v1/report.json": {
+      "semantic_match": true,
+      "compared_leaves": 3289,
+      "absolute_tolerance": 1e-12,
+      "relative_tolerance": 0,
+      "max_absolute_numeric_difference": 0.0,
+      "difference_count": 0,
+      "differences_first_50": [],
+      "excluded_paths": [
+        "$/completed_at",
+        "$/environment/platform",
+        "$/environment/python",
+        "$/git_commit_at_run"
+      ],
+      "model_artifact_hashes": [
+        {
+          "path": "$/model_sha256",
+          "equal": true
+        }
+      ],
+      "model_artifacts_match": true,
+      "reference_sha256": "aa0e36949d72c79720fd3f9ef211197c99e66636e22e86c4db95edcc8167b454",
+      "regenerated_sha256": "724f59b90f7562ed53c1674717f65da994dcd8df2754b517d090a9ae17f4079e"
+    },
+    "robustness-v1/report.json": {
+      "semantic_match": true,
+      "compared_leaves": 5839,
+      "absolute_tolerance": 1e-12,
+      "relative_tolerance": 0,
+      "max_absolute_numeric_difference": 0.0,
+      "difference_count": 0,
+      "differences_first_50": [],
+      "excluded_paths": [
+        "$/environment/platform",
+        "$/environment/python",
+        "$/git_commit_at_run"
+      ],
+      "model_artifact_hashes": [
+        {
+          "path": "$/model_sha256",
+          "equal": true
+        }
+      ],
+      "model_artifacts_match": true,
+      "reference_sha256": "9284f446e6134357ee800aef4b689f4eed82501c064584cc3df448961a32d268",
+      "regenerated_sha256": "56b06c30b14c2073bc357c9498c3185529948989e82ebf3404b3ee844c9c0957"
+    },
+    "zero-gate-v1/report.json": {
+      "semantic_match": true,
+      "compared_leaves": 8884,
+      "absolute_tolerance": 1e-12,
+      "relative_tolerance": 0,
+      "max_absolute_numeric_difference": 0.0,
+      "difference_count": 0,
+      "differences_first_50": [],
+      "excluded_paths": [
+        "$/git_commit_at_run",
+        "$/python"
+      ],
+      "model_artifact_hashes": [
+        {
+          "path": "$/model_sha256",
+          "equal": true
+        }
+      ],
+      "model_artifacts_match": true,
+      "reference_sha256": "bc3fc5044225601b0e7579cea51a4e0a64c14689b70c16e417d699f131b5c3dd",
+      "regenerated_sha256": "582fcaf4e3cc2cb74e70a117ec6ae6231a974b74298b56eb782089db6567942d"
+    },
+    "zero-gate-v1/local-response.json": {
+      "semantic_match": true,
+      "compared_leaves": 37,
+      "absolute_tolerance": 1e-12,
+      "relative_tolerance": 0,
+      "max_absolute_numeric_difference": 0.0,
+      "difference_count": 0,
+      "differences_first_50": [],
+      "excluded_paths": [],
+      "model_artifact_hashes": [
+        {
+          "path": "$/provenance/model_sha256",
+          "equal": true
+        }
+      ],
+      "model_artifacts_match": true,
+      "reference_sha256": "355bd777080827ae4bc946046cf5eee21740bb9ea85840676e657b4bf309c73b",
+      "regenerated_sha256": "355bd777080827ae4bc946046cf5eee21740bb9ea85840676e657b4bf309c73b"
+    }
+  },
+  "comparator_sha256": "650e58046cd5ecc817f5e8c915fe56dde8912e5a60e8bd4a92a9cf40bf5b358f"
+}

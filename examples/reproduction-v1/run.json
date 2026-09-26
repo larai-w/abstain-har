@@ -1,0 +1,125 @@
+{
+  "record_version": 1,
+  "scope": "fresh local checkout and empty virtual environment, same host",
+  "pipeline_revision": "07a3b87b7f0dfe966b4b93b35a63c3fbd3a7a7fe",
+  "checkout_source": "local Git clone of committed source; no ignored artifacts copied",
+  "reused_inputs": [
+    "pinned source archive"
+  ],
+  "regenerated": [
+    "window features",
+    "baseline models",
+    "selective models",
+    "stress reports",
+    "gate reports",
+    "local response"
+  ],
+  "package_installation": "new virtual environment; pinned packages installed, pip wheel cache reused",
+  "setup_network_retry": "initial sandbox network attempt failed; authorized retry succeeded",
+  "environment": {
+    "python": "3.12.10 (v3.12.10:0cc81280367, Apr  8 2025, 08:47:00) [Clang 13.0.0 (clang-1300.0.29.30)]",
+    "platform": "macOS-15.7.9-x86_64-i386-64bit",
+    "numeric_thread_limit": 1,
+    "packages": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2",
+      "joblib": "1.5.2",
+      "threadpoolctl": "3.6.0"
+    }
+  },
+  "archive_sha256": "2ab54d6b11467ddbe998dfb60355f9f1ae181b0af7a89e7c78bb7af2cf16b64a",
+  "stages": [
+    {
+      "stage": "dependencies",
+      "exit_code": 0,
+      "elapsed_seconds": 0.5076691209687851,
+      "stdout_sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_reviewed": true
+    },
+    {
+      "stage": "unit",
+      "exit_code": 0,
+      "elapsed_seconds": 72.32028224202804,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "afb30ce77124f00f47c9f680bf227e51c6145da8df89b34cb87ab28a95249a2a",
+      "stderr_reviewed": true
+    },
+    {
+      "stage": "input",
+      "exit_code": 0,
+      "elapsed_seconds": 75.3735074189608,
+      "stdout_sha256": "6acda7be7d0cb453099ccf63011a594a2852d3a080b1f4a28921f86a5701907c",
+      "stderr_sha256": "01ee88246015008d1751bb951c1c5e239992061ea0a822aee434477b8c5bb660",
+      "stderr_reviewed": true
+    },
+    {
+      "stage": "baseline",
+      "exit_code": 0,
+      "elapsed_seconds": 72.43641863099765,
+      "stdout_sha256": "34bb44f3363e03e8b00c3a7b741d1a0e4b45c47b4ce6c1393a0a42ac5bb033c5",
+      "stderr_sha256": "f227b52d08fe6179ee9517b956418795955a92aad0bcb66f76b69d9f0864de91",
+      "stderr_reviewed": true
+    },
+    {
+      "stage": "selective",
+      "exit_code": 0,
+      "elapsed_seconds": 22.0428741479991,
+      "stdout_sha256": "1fea1096943d755cf267166fa5bc7c3d6730e76a597297b64922a2aa7322bfff",
+      "stderr_sha256": "7edc13a7bf55c84e4f45d40abe2e01636ebd4e5974875b9ac07b413fbf950bc0",
+      "stderr_reviewed": true
+    },
+    {
+      "stage": "robustness",
+      "exit_code": 0,
+      "elapsed_seconds": 5.893934362975415,
+      "stdout_sha256": "48e318895b601d16a83a6a209e77bb72939eeb84871ef4016e9232f60480a0b1",
+      "stderr_sha256": "73f2b56c45c4968a11511675f56ee5823c58aa73b272bc822d29ca19ed9211c9",
+      "stderr_reviewed": true
+    },
+    {
+      "stage": "zero-gate",
+      "exit_code": 0,
+      "elapsed_seconds": 8.186327286995947,
+      "stdout_sha256": "42e0d518e4978028e39531de67c4e49245c3ca4f3bc6495f0df76f4afc501ed5",
+      "stderr_sha256": "91711262a7b590e5c26876fd7474baa7892b61f7b8decffc9bc04393eaa59cb2",
+      "stderr_reviewed": true
+    },
+    {
+      "stage": "local",
+      "exit_code": 0,
+      "elapsed_seconds": 2.212665377999656,
+      "stdout_sha256": "509bd8bfa7c5182859117ff3bcbeffbd2b54a003f73f7341293df4c18165f328",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_reviewed": true
+    }
+  ],
+  "pipeline_synthetic_tests": 84,
+  "post_run_synthetic_tests": {
+    "count": 88,
+    "exit_code": 0,
+    "test_seconds": 7.788,
+    "scope": "current source checkout with four comparator tests added, using the fresh interpreter"
+  },
+  "warnings": [
+    {
+      "stage": "selective",
+      "category": "UserWarning",
+      "message": "The least populated class in y has only 1 members, which is less than n_splits=5.",
+      "interpretation": "same documented sparse-class calibration limitation as original run"
+    }
+  ],
+  "comparison": {
+    "exit_code": 0,
+    "semantic_matches": 6,
+    "maximum_numeric_difference": 0.0,
+    "model_artifact_hashes_match": true
+  },
+  "limits": [
+    "Same host and Python version, not cross-platform research reproduction.",
+    "Same source data and split, not independent validation.",
+    "Agent-executed reproduction, not third-party review.",
+    "Raw logs remain local; listed log hashes include local paths and are not cross-run equality targets."
+  ]
+}

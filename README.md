@@ -4,6 +4,14 @@ Human activity recognition with explicit abstention and subject-disjoint evaluat
 
 **Status: HARTH baseline, calibration, abstention and fixed-model stress experiments are recorded.** There are no deployed endpoints or clinical validation claims.
 
+## Review and reproduce
+
+- [Model card](docs/MODEL_CARD.md): purpose, data, model selection, measured failures and intended-use limits.
+- [Five-minute walkthrough](docs/WALKTHROUGH.md): a path through the evidence and questions for technical review.
+- [Full reproduction](docs/REPRODUCTION.md): environment, archive preparation, training, evaluation and comparison commands.
+
+A fresh checkout and new Python 3.12 environment on the **same macOS host** regenerated features and models from the pinned archive. All six aggregate comparisons matched, with zero observed numeric differences and matching model artifact hashes. Runtime metadata is explicitly excluded and listed. This is same-host reproducibility, not independent validation or a cross-platform research-model claim. [Run record](examples/reproduction-v1/run.json) · [Comparison evidence](examples/reproduction-v1/comparison.json).
+
 ## Run local inference
 
 The [versioned local interface](docs/LOCAL_INFERENCE.md) accepts 30 named summaries and returns one of `input_rejected`, `model_abstained`, or `accepted`. Rejected and abstained rows have `label: null`. Model artifacts must match the recorded hashes and dependency versions; thresholds remain fixed.
