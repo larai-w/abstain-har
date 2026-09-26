@@ -1,0 +1,9 @@
+{
+  "contract_version": 1,
+  "dataset_kind": "synthetic",
+  "feature_set": "synthetic_indicator_summary_v1",
+  "feature_names": ["observed_fraction", "known_count", "unknown_count"],
+  "decisions": ["eligible", "quality_rejected", "insufficient_data"],
+  "split_roles": ["fit", "calibration", "threshold", "test"],
+  "quality_rules": ["required_fields", "timestamp_timezone", "observation_interpretation", "provenance", "missingness_status", "correction_reference"]
+}

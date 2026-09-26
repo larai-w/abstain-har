@@ -1,0 +1,45 @@
+name: Synthetic input integration
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        python-version: ['3.11', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m unittest discover -s tests -v
+
+  integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          path: consumer
+      - uses: actions/checkout@v4
+        with:
+          repository: larai-w/open-care-evidence-toolkit
+          ref: d3238cf5262b43c2d5a12e56bc1276c671e6535d
+          persist-credentials: false
+          path: toolkit
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/check_care_integration.py --toolkit ../toolkit
+        working-directory: consumer

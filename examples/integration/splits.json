@@ -1,0 +1,9 @@
+{
+  "split_version": 1,
+  "subjects": {
+    "fit": ["synthetic-fit"],
+    "calibration": ["synthetic-calibration"],
+    "threshold": ["synthetic-threshold"],
+    "test": ["synthetic-test"]
+  }
+}

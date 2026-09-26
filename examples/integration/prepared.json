@@ -1,0 +1,91 @@
+{
+  "status": "synthetic_contract_verified",
+  "feature_set": "synthetic_indicator_summary_v1",
+  "feature_names": [
+    "observed_fraction",
+    "known_count",
+    "unknown_count"
+  ],
+  "trained_model": false,
+  "batches": {
+    "fit": [
+      {
+        "sample_id": "fit-at-10",
+        "subject_id": "synthetic-fit",
+        "as_of": "2026-01-01T10:00:00+00:00",
+        "features": [
+          1.0,
+          1,
+          1
+        ]
+      }
+    ],
+    "calibration": [
+      {
+        "sample_id": "calibration-at-10",
+        "subject_id": "synthetic-calibration",
+        "as_of": "2026-01-01T10:00:00+00:00",
+        "features": [
+          1.0,
+          1,
+          1
+        ]
+      }
+    ],
+    "threshold": [
+      {
+        "sample_id": "threshold-at-10",
+        "subject_id": "synthetic-threshold",
+        "as_of": "2026-01-01T10:00:00+00:00",
+        "features": [
+          1.0,
+          1,
+          1
+        ]
+      }
+    ],
+    "test": [
+      {
+        "sample_id": "test-at-12",
+        "subject_id": "synthetic-test",
+        "as_of": "2026-01-01T12:00:00+00:00",
+        "features": [
+          0.5,
+          2,
+          1
+        ]
+      }
+    ]
+  },
+  "excluded": [
+    {
+      "sample_id": "fit-before-arrival",
+      "subject_id": "synthetic-fit",
+      "split": "fit",
+      "reason": "insufficient_data"
+    },
+    {
+      "sample_id": "test-at-10",
+      "subject_id": "synthetic-test",
+      "split": "test",
+      "reason": "quality_rejected"
+    }
+  ],
+  "summary": {
+    "total": 6,
+    "eligible": 4,
+    "excluded": 2,
+    "subjects": 4,
+    "eligible_by_split": {
+      "fit": 1,
+      "calibration": 1,
+      "threshold": 1,
+      "test": 1
+    }
+  },
+  "audit": {
+    "bundle_sha256": "0b8b32806a07c09dc7bb6ce94ae0886043aeb11c6488852524af13a14eabf21c",
+    "split_sha256": "f1287bf4705ce189a065ad39fa730f57669c6999e67c0f011dc653350905681a",
+    "contract_sha256": "a7b702b4d54cbb2f02bce7147f8b77003f02852264c74ef7068996d660f4de54"
+  }
+}

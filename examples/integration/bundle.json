@@ -1,0 +1,277 @@
+{
+  "contract_version": 1,
+  "dataset_kind": "synthetic",
+  "feature_set": "synthetic_indicator_summary_v1",
+  "feature_names": [
+    "observed_fraction",
+    "known_count",
+    "unknown_count"
+  ],
+  "contract_sha256": "a7b702b4d54cbb2f02bce7147f8b77003f02852264c74ef7068996d660f4de54",
+  "rows": [
+    {
+      "sample_id": "calibration-at-10",
+      "subject_id": "synthetic-calibration",
+      "as_of": "2026-01-01T10:00:00+00:00",
+      "decision": "eligible",
+      "features": {
+        "observed_fraction": 1.0,
+        "known_count": 1,
+        "unknown_count": 1
+      },
+      "quality_issues": [],
+      "audit": {
+        "history_sha256": "38b67887301035e2232ba61f8451ecc6237f686ea1d440e4c796a7be40c42ce5",
+        "selected_versions": [
+          {
+            "event_id": "calibration-synthetic-a",
+            "observed_at": "2026-01-01T09:00:00+00:00",
+            "received_at": "2026-01-01T09:05:00+00:00",
+            "status": "observed"
+          },
+          {
+            "event_id": "calibration-synthetic-c",
+            "observed_at": "2026-01-01T09:20:00+00:00",
+            "received_at": "2026-01-01T09:21:00+00:00",
+            "status": "not_recorded"
+          }
+        ],
+        "lineage": [
+          {
+            "root_event_id": "calibration-synthetic-a",
+            "selected_event_id": "calibration-synthetic-a",
+            "chain": [
+              "calibration-synthetic-a"
+            ]
+          },
+          {
+            "root_event_id": "calibration-synthetic-c",
+            "selected_event_id": "calibration-synthetic-c",
+            "chain": [
+              "calibration-synthetic-c"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "sample_id": "fit-at-10",
+      "subject_id": "synthetic-fit",
+      "as_of": "2026-01-01T10:00:00+00:00",
+      "decision": "eligible",
+      "features": {
+        "observed_fraction": 1.0,
+        "known_count": 1,
+        "unknown_count": 1
+      },
+      "quality_issues": [],
+      "audit": {
+        "history_sha256": "a7ca148fbeffbcb3db0a3d47285e4d34522eb8616dc84860750177c37a90e26c",
+        "selected_versions": [
+          {
+            "event_id": "fit-synthetic-a",
+            "observed_at": "2026-01-01T09:00:00+00:00",
+            "received_at": "2026-01-01T09:05:00+00:00",
+            "status": "observed"
+          },
+          {
+            "event_id": "fit-synthetic-c",
+            "observed_at": "2026-01-01T09:20:00+00:00",
+            "received_at": "2026-01-01T09:21:00+00:00",
+            "status": "not_recorded"
+          }
+        ],
+        "lineage": [
+          {
+            "root_event_id": "fit-synthetic-a",
+            "selected_event_id": "fit-synthetic-a",
+            "chain": [
+              "fit-synthetic-a"
+            ]
+          },
+          {
+            "root_event_id": "fit-synthetic-c",
+            "selected_event_id": "fit-synthetic-c",
+            "chain": [
+              "fit-synthetic-c"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "sample_id": "fit-before-arrival",
+      "subject_id": "synthetic-fit",
+      "as_of": "2026-01-01T09:00:00+00:00",
+      "decision": "insufficient_data",
+      "features": null,
+      "quality_issues": [],
+      "audit": {
+        "history_sha256": "a7ca148fbeffbcb3db0a3d47285e4d34522eb8616dc84860750177c37a90e26c",
+        "selected_versions": [],
+        "lineage": []
+      }
+    },
+    {
+      "sample_id": "test-at-10",
+      "subject_id": "synthetic-test",
+      "as_of": "2026-01-01T10:00:00+00:00",
+      "decision": "quality_rejected",
+      "features": null,
+      "quality_issues": [
+        {
+          "event_id": "test-synthetic-a",
+          "rule": "observation_interpretation"
+        }
+      ],
+      "audit": {
+        "history_sha256": "94f2ed84a8ca02cd0a85d523b974349adda97b45819e6f76c4e8c252d9ecb291",
+        "selected_versions": [
+          {
+            "event_id": "test-synthetic-a",
+            "observed_at": "2026-01-01T09:00:00+00:00",
+            "received_at": "2026-01-01T09:05:00+00:00",
+            "status": "observed"
+          },
+          {
+            "event_id": "test-synthetic-c",
+            "observed_at": "2026-01-01T09:20:00+00:00",
+            "received_at": "2026-01-01T09:21:00+00:00",
+            "status": "not_recorded"
+          }
+        ],
+        "lineage": [
+          {
+            "root_event_id": "test-synthetic-a",
+            "selected_event_id": "test-synthetic-a",
+            "chain": [
+              "test-synthetic-a"
+            ]
+          },
+          {
+            "root_event_id": "test-synthetic-c",
+            "selected_event_id": "test-synthetic-c",
+            "chain": [
+              "test-synthetic-c"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "sample_id": "test-at-12",
+      "subject_id": "synthetic-test",
+      "as_of": "2026-01-01T12:00:00+00:00",
+      "decision": "eligible",
+      "features": {
+        "observed_fraction": 0.5,
+        "known_count": 2,
+        "unknown_count": 1
+      },
+      "quality_issues": [],
+      "audit": {
+        "history_sha256": "94f2ed84a8ca02cd0a85d523b974349adda97b45819e6f76c4e8c252d9ecb291",
+        "selected_versions": [
+          {
+            "event_id": "test-synthetic-a-r2",
+            "observed_at": "2026-01-01T09:00:00+00:00",
+            "received_at": "2026-01-01T12:00:00+00:00",
+            "status": "observed"
+          },
+          {
+            "event_id": "test-synthetic-b",
+            "observed_at": "2026-01-01T09:10:00+00:00",
+            "received_at": "2026-01-01T11:00:00+00:00",
+            "status": "not_occurring"
+          },
+          {
+            "event_id": "test-synthetic-c",
+            "observed_at": "2026-01-01T09:20:00+00:00",
+            "received_at": "2026-01-01T09:21:00+00:00",
+            "status": "not_recorded"
+          }
+        ],
+        "lineage": [
+          {
+            "root_event_id": "test-synthetic-a",
+            "selected_event_id": "test-synthetic-a-r2",
+            "chain": [
+              "test-synthetic-a",
+              "test-synthetic-a-r1",
+              "test-synthetic-a-r2"
+            ]
+          },
+          {
+            "root_event_id": "test-synthetic-b",
+            "selected_event_id": "test-synthetic-b",
+            "chain": [
+              "test-synthetic-b"
+            ]
+          },
+          {
+            "root_event_id": "test-synthetic-c",
+            "selected_event_id": "test-synthetic-c",
+            "chain": [
+              "test-synthetic-c"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "sample_id": "threshold-at-10",
+      "subject_id": "synthetic-threshold",
+      "as_of": "2026-01-01T10:00:00+00:00",
+      "decision": "eligible",
+      "features": {
+        "observed_fraction": 1.0,
+        "known_count": 1,
+        "unknown_count": 1
+      },
+      "quality_issues": [],
+      "audit": {
+        "history_sha256": "9cf091e8410427b1b88176d438d949a188da422d4b153f8269ce877d748753ce",
+        "selected_versions": [
+          {
+            "event_id": "threshold-synthetic-a",
+            "observed_at": "2026-01-01T09:00:00+00:00",
+            "received_at": "2026-01-01T09:05:00+00:00",
+            "status": "observed"
+          },
+          {
+            "event_id": "threshold-synthetic-c",
+            "observed_at": "2026-01-01T09:20:00+00:00",
+            "received_at": "2026-01-01T09:21:00+00:00",
+            "status": "not_recorded"
+          }
+        ],
+        "lineage": [
+          {
+            "root_event_id": "threshold-synthetic-a",
+            "selected_event_id": "threshold-synthetic-a",
+            "chain": [
+              "threshold-synthetic-a"
+            ]
+          },
+          {
+            "root_event_id": "threshold-synthetic-c",
+            "selected_event_id": "threshold-synthetic-c",
+            "chain": [
+              "threshold-synthetic-c"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "request_sha256": "d1730d0d84e1e297147175f27852582f6be33763ab0fb94f1254d2dab4985d8b",
+    "producer": "open-care-evidence-toolkit",
+    "source_sha256": {
+      "care_export.py": "4c8cefbdba5f92ffcdecbdd32421d367a6b15c88efb419a4471e59a240a0447c",
+      "care_history.py": "879bc17aa60de91b8327855942746c0dea8fbd5b0da82802942b1df39cef8237",
+      "care_evidence.py": "e8d7274b92b0a462d0c7be6264198966dfefb3d55d9ea1317326b64fc542525a",
+      "rules.json": "f71c6221613494a9b2f05093cd2c27966744ab834198ef9de09c8c1c9962285d"
+    }
+  }
+}
