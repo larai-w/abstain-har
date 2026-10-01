@@ -56,6 +56,8 @@ The full report retains both variants and all conditions, including a small offs
 
 The runner requires the locally generated, hash-matched selective model artifacts and pinned ML environment. Models and feature rows remain excluded from the repository.
 
+[Related work (2026)](docs/RELATED_WORK.md) compares few-shot user adaptation (BayaHAR) and conformal prediction sets (HDUQ-HAR) with this protocol. It is a reading aid; nothing was re-run.
+
 ## Calibration and abstention
 
 The [fixed extension protocol](docs/ABSTENTION.md) calibrates the selected forest on three separate participants and chooses thresholds on another three. This is **exploratory reuse of the previously evaluated four-person test split**, not a new independent validation sample.
