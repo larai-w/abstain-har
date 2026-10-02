@@ -1,6 +1,6 @@
 # Five-minute technical walkthrough
 
-A suggested reading path for a technical review, not a claim that a particular person has independently demonstrated these skills.
+A five-minute reading path through the project's key decisions. Developed with AI assistance; design decisions, review and testing were mine.
 
 ## 0:00–1:00 — Question and data
 
