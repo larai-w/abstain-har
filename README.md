@@ -182,3 +182,7 @@ The content check is a guard against known patterns, not a complete security or 
 This is a research software project, not a medical device or a clinical decision system. Public research datasets must not be described as synthetic data. Any future synthetic examples must be labelled separately from predictions derived from research recordings.
 
 Do not contribute private health records, identifiable personal information, credentials, or course assignment materials. Dataset licenses remain separate from this repository; raw datasets and trained models are not included.
+
+## License
+
+The code and documentation in this repository are released under the [MIT License](LICENSE). The license does not cover the public research datasets, which keep their own licenses and are not included here.
